@@ -1,0 +1,15 @@
+syntax = "proto3";
+package healthcheck;
+
+service HealthCheck {
+  rpc HealthCheck (HealthCheckRequest) returns (HealthCheckReply);
+}
+
+message HealthCheckRequest {
+}
+
+message HealthCheckReply {
+  string status = 1;
+  string binance = 2;
+  string bitstamp = 3;
+}
