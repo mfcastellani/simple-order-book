@@ -17,7 +17,7 @@ pub struct DepthStreamData {
     pub asks: Vec<OfferData>,
 }
 
-pub fn de_float_from_str<'a, D>(deserializer: D) -> Result<f32, D::Error>
+pub fn de_float_from_str<'a, D>(deserializer: D) -> Result<f32, D::Error> 
     where
         D: Deserializer<'a>,
 {

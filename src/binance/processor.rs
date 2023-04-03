@@ -25,7 +25,7 @@ pub async fn process() {
         };
 
         println!("{:?}", msg);
-        
+
         let parsed: models::DepthStreamData = serde_json::from_str(&msg).expect("Can't parse");
         for i in 0..parsed.asks.len() {
             println!(
