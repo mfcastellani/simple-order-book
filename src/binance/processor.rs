@@ -8,11 +8,10 @@ pub async fn process() {
     let binance_url: String = String::from(BINANCE_WS_API);
     let (mut socket, response) = connect(Url::parse(&binance_url).unwrap()).expect("Can't connect to binance stream.");
 
-    println!("Connected to binance stream.");
-    println!("HTTP status code: {}", response.status());
-    println!("Response headers:");
+    log::info!("Connected to binance stream. {}", response.status());
+    log::info!("Response headers:");
     for (ref header, ref header_value) in response.headers() {
-        println!("- {}: {:?}", header, header_value);
+        log::info!("- {}: {:?}", header, header_value);
     }
 
     loop {
@@ -24,14 +23,12 @@ pub async fn process() {
             }
         };
 
-        println!("{:?}", msg);
-
-        let parsed: models::DepthStreamData = serde_json::from_str(&msg).expect("Can't parse");
-        for i in 0..parsed.asks.len() {
-            println!(
-                "{}: ask: {}, size: {}",
-                i, parsed.asks[i].price, parsed.asks[i].size
-            );
-        }
+        let _parsed: models::DepthStreamData = serde_json::from_str(&msg).expect("Can't parse");
+        // for i in 0..parsed.asks.len() {
+        //     println!(
+        //         "{}: ask: {}, size: {}",
+        //         i, parsed.asks[i].price, parsed.asks[i].size
+        //     );
+        // }
     }
 }
